@@ -1,91 +1,62 @@
 #include<iostream>
-#include<vector>
+#include<queue>
 using namespace std;
 
-class Queue {
-private:
-	int capacity = 0;
-	vector<int> q;
-
-public:
-	Queue() {
-		capacity = NULL;
-	}
-
-	void push(int num) {
-		q.push_back(num);
-		capacity++;
-	}
-
-	void pop() {
-		if (empty()) {
-			cout << -1 << "\n";
-		}
-		else {
-			int tmp = q.front();
-			q.erase(q.begin());
-			capacity--;
-			cout << tmp << "\n";
-		}
-	}
-
-	int size() {
-		return capacity;
-	}
-
-	bool empty() {
-		return capacity == 0;
-	}
-
-	int front() {
-		if (empty()) {
-			return -1;
-		}
-		else {
-			return q.front();
-		}
-	}
-
-	int back() {
-		if (empty()) {
-			return -1;
-		}
-		else {
-			return q.back();
-		}
-	}
-};
-
-
 int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	
+
 	int N = 0;
 	string mode;
 	int num = 0;
 
-	cin >> N;
+	queue<int> st;
 
-	Queue q;
+	cin >> N;
 
 	for (int i{ 0 }; i < N; i++) {
 		cin >> mode;
 		if (mode == "push") {
 			cin >> num;
-			q.push(num);
+			st.push(num);
 		}
 		else if (mode == "front") {
-			cout << q.front() << "\n";
-		}
-		else if (mode == "back") {
-			cout << q.back() << "\n";
+			if (st.size() == 0) {
+				cout << -1 << "\n";
+			}
+			else {
+				cout << st.front() << "\n";
+			}
 		}
 		else if (mode == "pop") {
-			q.pop();
-		}
-		else if (mode == "size") {
-			cout << q.size() << "\n";
+			if (st.size() == 0) {
+				cout << -1 << "\n";
+			}
+			else {
+				cout << st.front() << "\n";
+				st.pop();
+			}
 		}
 		else if (mode == "empty") {
-			cout << q.empty() << "\n";
+			if (st.size() == 0) {
+				cout << 1 << "\n";
+			}
+			else {
+				cout << 0 << "\n";
+			}
+		}
+		else if (mode == "size") {
+			cout << st.size() << "\n";
+		}
+		else if (mode == "back") {
+			if (st.size() == 0) {
+				cout << -1 << "\n";
+			}
+			else {
+				cout << st.back() << "\n";
+			}
 		}
 	}
+	
 }
