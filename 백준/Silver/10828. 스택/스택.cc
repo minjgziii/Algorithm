@@ -1,66 +1,54 @@
-#include<bits/stdc++.h>;
+#include<iostream>
+#include<stack>
 using namespace std;
 
-int s;
-int a[10001];
-
-void push(int x) {
-	a[s] = x;
-	s++;
-}
-
-int pop() {
-	if (s == 0)
-		return -1;
-	else {
-		int t = a[s - 1];
-		s--;
-		return t;
-	}
-}
-int size() {
-	return s;
-}
-
-int top() {
-	if (s == 0)
-		return -1;
-	else
-		return a[s - 1];
-}
-int empty() {
-	if (s == 0)
-		return 1;
-	else
-		return 0;
-}
-
 int main() {
-	ios::sync_with_stdio(0);
+	ios::sync_with_stdio(false);
 	cin.tie(0);
+	
 
-	string str;
 	int N = 0;
+	string mode;
+	int num = 0;
+
+	stack<int> st;
+
 	cin >> N;
 
 	for (int i{ 0 }; i < N; i++) {
-		cin >> str;
-		if (str == "push") {
-			int n;
-			cin >> n;
-			push(n);
+		cin >> mode;
+		if (mode == "push") {
+			cin >> num;
+			st.push(num);
 		}
-		if (str == "pop") {
-			cout << pop() << "\n";
+		else if (mode == "top") {
+			if (st.size() == 0) {
+				cout << -1 << "\n";
+			}
+			else {
+				cout << st.top() << "\n";
+			}
 		}
-		if (str == "top") {
-			cout << top() << "\n";
+		else if (mode == "pop") {
+			if (st.size() == 0) {
+				cout << -1 << "\n";
+			}
+			else {
+				cout << st.top() << "\n";
+				st.pop();
+			}
 		}
-		if (str == "size") {
-			cout << size() << "\n";
+		else if (mode == "empty") {
+			if (st.size() == 0) {
+				cout << 1 << "\n";
+			}
+			else {
+				cout << 0 << "\n";
+			}
 		}
-		if (str == "empty") {
-			cout << empty() << "\n";
+		else if (mode == "size") {
+			cout << st.size() << "\n";
 		}
 	}
+	
 }
