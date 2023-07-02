@@ -1,53 +1,52 @@
-#include <iostream>
+#include<iostream>
 #include <string>
-#include <deque>
 #include <vector>
-
+#include <deque>
 using namespace std;
 
 int solution(int cacheSize, vector<string> cities) {
-    
     int answer = 0;
 
-    deque<string> cache;
+    vector<string> CITIES; // 대문자로 변환 후 삽입
+    deque<string> d; // 캐시
 
-	for (int i{ 0 }; i < cities.size(); i++) {
-		// 캐시에 넣을 도시
-		string city = cities[i];
+    // 대문자로 변환
+    for (int i{ 0 }; i < cities.size(); i++) {
+        string a = cities[i];
+        for (int j{ 0 }; j < a.size(); j++) {
+            a[j] = toupper(a[j]);
+        }
+        
+        int miss = 0;
 
-		// 모든 문자 대문자로 변환
-		for (int j{ 0 }; j < city.length(); j++) {
-			city[j] = toupper(city[j]);
-		}
+        int index = 0;
 
-		//캐시 hit, miss인지 판단
-		bool hit = false;
-		int index = 0;
-		for (index = 0; index < cache.size(); index++) {
-			if (cache[index] == city) {
-				hit = true;
-				break;
-			}
-		}
+        for (index = 0; index < d.size(); index++) {
+            // cache hit
+            if (d[index] == a) {
+                miss++;
+                break;
+            }
+        }
 
-		// 일단 cache 가장 뒤에 삽입(LRU)
-		cache.push_back(city);
+        d.push_back(a);
 
+        // cache hit
+        if (miss != 0) {
+            answer += 1;
+            // cache에 있던 기존 데이터 삭제
+            d.erase(d.begin() + index);
+        }
 
-		if (hit == true) {
-			// 캐시에 있는 기존 데이터 삭제
-			cache.erase(cache.begin() + index);
+        // cache miss
+        else {
+            answer += 5;
+            // 만약 cacheSize 넘쳤을 때
+            if (d.size() > cacheSize) {
+                d.pop_front();
+            }
+        }
+    }
 
-			// cache hit 일 경우 실행시간 1
-			answer += 1;
-		}
-		else {
-			if (cache.size() > cacheSize) {
-				cache.pop_front();
-			}
-			answer += 5;
-		}
-	}
-    
     return answer;
 }
