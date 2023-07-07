@@ -1,35 +1,33 @@
-#include<string>
-#include <iostream>
+#include <string>
 #include <stack>
+#include <iostream>
 using namespace std;
 
 bool solution(string s)
 {
     bool answer = true;
 
-    stack<char> s1; // (
-    stack<char> s2; // )
+    stack<char> open;
 
     for (int i{ 0 }; i < s.size(); i++) {
+        // '(' 일 때
         if (s[i] == '(') {
-            s1.push('(');
+            open.push(s[i]);
         }
+        // ')' 일 때
         else {
-            s2.push(')');
-            if (s1.size() <= 0) {
+            // ')'일 때, pop을 하려고 하는데 스택이 비어있다 -> 올바르지 않은 괄호
+            if (open.size() == 0) {
                 return false;
             }
             else {
-                s1.pop();
-                s2.pop();
+                open.pop();
             }
         }
     }
 
-    if (s2.size() == 0 && s1.size() == 0) {
-        answer = true;
-    }
-    else {
+    // 마지막에 스택에 데이터가 남아있다 -> 올바르지 않은 괄호
+    if (open.size() != 0) {
         answer = false;
     }
 
