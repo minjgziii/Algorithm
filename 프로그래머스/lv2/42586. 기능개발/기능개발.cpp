@@ -1,4 +1,3 @@
-#include <string>
 #include <vector>
 #include <deque>
 #include <iostream>
@@ -13,18 +12,19 @@ vector<int> solution(vector<int> progresses, vector<int> speeds) {
     for (int i{ 0 }; i < progresses.size(); i++) {
         d.push_back(100 - progresses[i]);
     }
-    vector<pair<int, int>> v;
+    
+    vector<int> v;
 
     for (int i{ 0 }; i < progresses.size(); i++) {
         int a = 0;
 
         if (d[i] % speeds[i] == 0) {
             a = d[i] / speeds[i];
-            v.push_back(make_pair(a, 1));
+            v.push_back(a);
         }
         else {
             a = (d[i] / speeds[i]) + 1;
-            v.push_back(make_pair(a, 1));
+            v.push_back(a);
         }
     }
 
@@ -34,10 +34,10 @@ vector<int> solution(vector<int> progresses, vector<int> speeds) {
     while(true) {
 
         int cnt = 1;
-        int a = v[i].first;
+        int a = v[i];
 
         for (int j{ i + 1 }; j < v.size(); j++) {
-            if (a < v[j].first) {
+            if (a < v[j]) {
                 break;
             }
             else {
