@@ -9,7 +9,7 @@ int main() {
 	int N = 0;
 	int x = 0;
 
-	priority_queue<int, vector<int>, less<int>> q;
+	priority_queue<int> q;
 
 	cin >> N;
 
