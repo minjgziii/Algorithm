@@ -3,7 +3,6 @@
 #include<cstring>
 using namespace std;
 
-int t;
 int w, h;
 int arr[51][51];
 bool visited[51][51];
