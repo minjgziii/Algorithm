@@ -48,19 +48,19 @@ int main() {
 
 	cin >> N;
 
-	int rainMax = -1;
+	int maxHeight = -1;
 	int max = 0;
 
 	for (int i{ 0 }; i < N; i++) {
 		for (int j{ 0 }; j < N; j++) {
 			cin >> arr[i][j];
-			if (rainMax < arr[i][j]) {
-				rainMax = arr[i][j];
+			if (maxHeight < arr[i][j]) {
+				maxHeight = arr[i][j];
 			}
 		}
 	}
 
-	for (int x{ 0 }; x <= rainMax; x++) {
+	for (int x{ 0 }; x <= maxHeight; x++) {
 		memset(visited, false, sizeof(visited));
 		int ans = 0;
 
