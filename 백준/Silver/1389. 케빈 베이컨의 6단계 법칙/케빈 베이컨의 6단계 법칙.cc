@@ -48,7 +48,7 @@ int main() {
 		vec[B].push_back(A);
 	}
 
-	int max = 98765432;
+	int min = 98765432;
 	int ans = 0;
 
 	for (int i{ 1 }; i <= N; i++) {
@@ -62,8 +62,8 @@ int main() {
 				cnt = 0;
 			}
 		}
-		if (max > temp) {
-			max = temp;
+		if (min > temp) {
+			min = temp;
 			ans = i;
 		}
 	}
