@@ -26,9 +26,9 @@ class Solution {
             }
         }
         
-        Collections.sort(list);
+        Collections.sort(list, Collections.reverseOrder());
         
-        answer = list.get(list.size()-1);
+        answer = list.get(0);
         
         return answer;
     }
