@@ -2,7 +2,6 @@ import java.util.*;
 
 class Solution {
     static int[][] dir = {{1,0},{-1,0},{0,1},{0,-1}};
-    static int[][] ans = new int[101][101];
     
     public int[] solution(int m, int n, int[][] picture) {
         Queue<Integer> queue = new LinkedList<>();
@@ -45,7 +44,6 @@ class Solution {
     public int bfs(int now, int i_x, int i_y, int[][] picture, int[][] visited) {
         int answer = 1;
         int[] start = {i_x, i_y};
-        ans[i_x][i_y] = 1;
         
         Queue<int[]> q = new LinkedList<>();
         q.offer(start);
@@ -73,7 +71,6 @@ class Solution {
                     continue;
                 }
                 
-                ans[now_x][now_y] = ans[i_x][i_y] + 1;
                 answer++;
                 visited[now_x][now_y] = 1;
                 q.offer(new int[]{now_x, now_y});
