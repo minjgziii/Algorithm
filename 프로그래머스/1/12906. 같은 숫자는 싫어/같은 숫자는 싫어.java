@@ -2,26 +2,20 @@ import java.util.*;
 
 public class Solution {
     public List<Integer> solution(int []arr) {
-        int[] answer = {};
-
         List<Integer> ls = new ArrayList<>();
-        
-        Deque<Integer> s = new ArrayDeque<>();
+        Deque<Integer> dq = new ArrayDeque<>();
         
         for(int a : arr) {
-            if(s.size()==0) {
-                s.add(a);
-            }
-            else if(a != s.getLast()) {
-                s.add(a);
+            if(dq.size()==0 || a != dq.getLast()) {
+                dq.add(a);
             }
         }
         
-        int size = s.size();
+        int size = dq.size();
         
         for(int i=0; i<size; i++) {
-            ls.add(s.getFirst());
-            s.poll();
+            ls.add(dq.getFirst());
+            dq.poll();
         }
         
         return ls;
